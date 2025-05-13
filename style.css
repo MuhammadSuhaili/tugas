@@ -57,7 +57,7 @@ section {
 }
 
 section:not(#home) {
-  max-width: 1700px;  /* Ganti dengan ukuran max-width yang diinginkan */
+  max-width: 1500px;  /* Ganti dengan ukuran max-width yang diinginkan */
 }
 
 h2 {
