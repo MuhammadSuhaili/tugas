@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Marketplace Furniture</title>
+<style>
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f5f0; /* cream background */
+    color: #4b3b2b; /* brown text */
+    scroll-behavior: smooth;
+  }
+  a {
+    color: #0a1f44; /* navy color */
+    text-decoration: none;
+  }
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
+
+  /* Navbar */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(245, 245, 240, 0.95); /* cream */
+    backdrop-filter: saturate(180%) blur(10px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+  nav ul {
+    margin: 0;
+    padding: 0 1rem;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    height: 60px;
+    align-items: center;
+  }
+  nav li {
+  }
+  nav a {
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  nav a:hover,
+  nav a.active {
+    border-bottom: 2px solid #0a1f44; /* navy */
+  }
+
+  /* Sections base */
+  section {
+    padding: 6rem 1rem 4rem 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  h2 {
+    font-size: 2rem;
+    color: #0a1f44; /* navy */
+    margin-bottom: 1rem;
+    border-bottom: 3px solid #bfa87a; /* beige */
+    display: inline-block;
+    padding-bottom: 0.3rem;
+  }
+  p {
+    line-height: 1.6;
+    font-size: 1.1rem;
+  }
+
+  /* Home / Banner */
+  #home {
+    height: 100vh;
+    background: linear-gradient(180deg, #0a1f44 0%, #bfa87a 100%); /* navy to beige */
+    color: #f5f5f0; /* cream text */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+    text-align: center;
+  }
+  #home h1 {
+    font-weight: 900;
+    font-size: 3rem;
+    margin: 0;
+    max-width: 700px;
+  }
+  #home p {
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-top: 0.8rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+  }
+  .cta {
+    background-color: #0a1f44; /* navy */
+    color: #f5f5f0; /* cream */
+    font-weight: 700;
+    padding: 0.85rem 2.2rem;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(10, 31, 68, 0.7);
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+  }
+  .cta:hover,
+  .cta:focus {
+    background-color: #5a4b30; /* brown */
+  }
+
+  /* About Us */
+  #about p {
+    max-width: 700px;
+    margin-bottom: 0;
+  }
+
+  /* Our Products */
+  #products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 1.8rem;
+  }
+  .product-card {
+    background: #fff8e7; /* cream */
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgb(75 59 43 / 0.1);
+    padding: 1.5rem 1rem 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    color: #4b3b2b; /* brown text */
+  }
+  .product-card:hover,
+  .product-card:focus-within {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgb(75 59 43 / 0.22);
+  }
+  .product-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+  .product-card h3 {
+    color: #0a1f44; /* navy */
+    margin: 0 0 0.7rem 0;
+  }
+  .product-card p {
+    font-size: 0.95rem;
+    color: #5a4b30; /* brown */
+    flex-grow: 1;
+  }
+
+  /* Categories */
+  #categories ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    padding-left: 0;
+    list-style: none;
+    margin-top: 1rem;
+  }
+  #categories li {
+    background: #bfa87a; /* beige */
+    color: #0a1f44; /* navy */
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgb(191 168 122 / 0.6);
+    cursor: default;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  #categories li:hover {
+    background-color: #a58d56; /* darker beige */
+    box-shadow: 0 6px 20px rgb(165 141 86 / 0.7);
+  }
+
+  /* Testimonials */
+  #testimonials blockquote {
+    background: #fff8e7; /* cream */
+    border-left: 6px solid #0a1f44; /* navy */
+    padding: 1rem 1.5rem;
+    margin: 1rem auto 1rem auto;
+    max-width: 700px;
+    font-style: italic;
+    box-shadow: 0 2px 10px rgb(75 59 43 / 0.08);
+    border-radius: 10px;
+    color: #5a4b30; /* brown */
+  }
+  #testimonials blockquote p {
+    margin: 0;
+  }
+  #testimonials blockquote footer {
+    font-style: normal;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    text-align: right;
+    color: #0a1f44; /* navy */
+  }
+
+  /* FAQ */
+  #faq .faq-item {
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+  }
+  #faq h3 {
+    cursor: pointer;
+    position: relative;
+    padding-right: 1.5rem;
+    color: #0a1f44; /* navy */
+    font-weight: 700;
+  }
+  #faq h3::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1.5rem;
+    user-select: none;
+    transition: transform 0.3s ease;
+  }
+  #faq .faq-item.open h3::after {
+    content: "-";
+    transform: rotate(180deg);
+  }
+  #faq p {
+    margin-top: 0.5rem;
+    display: none;
+    font-size: 1rem;
+    color: #4b3b2b; /* brown */
+  }
+  #faq .faq-item.open p {
+    display: block;
+  }
+
+  /* Contact Us */
+  #contact form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  #contact label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #0a1f44;
+  }
+  #contact input[type="text"],
+  #contact input[type="email"],
+  #contact textarea {
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    border: 1.5px solid #bfa87a; /* beige */
+    font-size: 1rem;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+    color: #333;
+    background-color: #fff8e7; /* cream */
+  }
+  #contact input[type="text"]:focus,
+  #contact input[type="email"]:focus,
+  #contact textarea:focus {
+    outline: none;
+    border-color: #0a1f44; /* navy */
+  }
+  #contact button {
+    background-color: #0a1f44; /* navy */
+    border: none;
+    color: #f5f5f0; /* cream */
+    font-weight: 700;
+    padding: 0.85rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.15rem;
+    box-shadow: 0 4px 15px rgba(10, 31, 68, 0.6);
+    transition: background-color 0.3s ease;
+  }
+  #contact button:hover,
+  #contact button:focus {
+    background-color: #5a4b30; /* brown */
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1.5rem 1rem 2.5rem 1rem;
+    color: #6b584f; /* soft brown */
+    font-size: 0.9rem;
+    user-select: none;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    #home h1 {
+      font-size: 2.5rem;
+      padding: 0 1rem;
+    }
+    nav ul {
+      gap: 1rem;
+      padding: 0 0.5rem;
+    }
+    .product-card {
+      padding: 1.2rem;
+    }
+    #categories ul {
+      gap: 1rem;
+    }
+  }
+  @media (max-width: 400px) {
+    nav ul {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <ul>
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#products">Our Products</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+  </ul>
+</nav>
+
+<section id="home" tabindex="0" aria-label="Home section">
+  <h1>Selamat Datang di Marketplace Furniture</h1>
+  <p>Temukan furniture impian Anda di sini!</p>
+  <a href="#products" class="cta">Lihat Produk Kami</a>
+</section>
+
+<section id="about" tabindex="0" aria-label="About Us section">
+  <h2>Tentang Kami</h2>
+  <p>Kami adalah perusahaan furniture yang menyediakan berbagai produk berkualitas tinggi untuk kebutuhan rumah Anda. Kami berkomitmen menghadirkan desain modern dengan kualitas terbaik.</p>
+</section>
+
+<section id="products" tabindex="0" aria-label="Our Products section">
+  <h2>Produk Kami</h2>
+  
+  <div class="product-card" tabindex="0" role="article" aria-label="Sofa Modern">
+    <img src="images/sofa.avif" alt="Sofa Modern" />
+    <h3>Sofa Modern</h3>
+    <p>Sofa dengan desain minimalis dan kenyamanan maksimal untuk ruang tamu Anda.</p>
+  </div>
+  
+  <div class="product-card" tabindex="0" role="article" aria-label="Meja Makan">
+    <img src="images/table.jpg" alt="Meja Makan" />
+    <h3>Meja Makan</h3>
+    <p>Meja makan dari kayu solid dengan finishing natural elegan.</p>
+  </div>
+  
+  <div class="product-card" tabindex="0" role="article" aria-label="Kursi Ergonomis">
+    <img src="images/ergo.jpg" alt="Kursi Ergonomis" />
+    <h3>Kursi Ergonomis</h3>
+    <p>Kursi dengan desain ergonomis cocok untuk kerja atau ruang belajar.</p>
+  </div>
+  
+  <div class="product-card" tabindex="0" role="article" aria-label="Lemari Minimalis">
+    <img src="images/lemari3.jpg" alt="Lemari Minimalis" />
+    <h3>Lemari Minimalis</h3>
+    <p>Lemari dengan desain simpel dan fungsional untuk ruang kamar Anda.</p>
+  </div>
+  
+  <div class="product-card" tabindex="0" role="article" aria-label="Rak Buku">
+    <img src="images/rak-buku.jpg" alt="Rak Buku" />
+    <h3>Rak Buku</h3>
+    <p>Rak buku dengan desain modular yang bisa disesuaikan dengan ruang Anda.</p>
+  </div>
+  
+  <div class="product-card" tabindex="0" role="article" aria-label="Bangku Kayu">
+    <img src="images/kursi-kayu.jpg" alt="Bangku Kayu" />
+    <h3>Bangku Kayu</h3>
+    <p>Bangku kayu kokoh dengan sentuhan rustic yang elegan.</p>
+  </div>
+  
+  <div class="product-card" tabindex="0" role="article" aria-label="Meja Kopi">
+    <img src="images/meja-kopi.jpg" alt="Meja Kopi" />
+    <h3>Meja Kopi</h3>
+    <p>Meja kopi dengan desain kontemporer, sempurna untuk ruang tamu modern.</p>
+  </div>
+</section>
+
+<section id="categories" tabindex="0" aria-label="Categories section">
+  <h2>Kategori Produk</h2>
+  <ul>
+    <li>Sofa</li>
+    <li>Meja</li>
+    <li>Kursi</li>
+    <li>Lemari</li>
+    <li>Rak Buku</li>
+    <li>Bangku</li>
+  </ul>
+</section>
+
+<section id="testimonials" tabindex="0" aria-label="Testimonials section">
+  <h2>Testimoni Pelanggan</h2>
+  <blockquote tabindex="0" aria-label='Ulasan dari Pelanggan A'>
+    <p>"Pelayanan yang sangat baik dan produk berkualitas! Saya sangat merekomendasikan marketplace ini untuk semua kebutuhan furniture rumah saya."</p>
+    <footer>- Pelanggan A</footer>
+  </blockquote>
+
+  <blockquote tabindex="0" aria-label='Ulasan dari Pelanggan B'>
+    <p>"Saya sangat puas dengan pembelian saya. Barang datang tepat waktu dan kualitasnya melebihi harapan."</p>
+    <footer>- Pelanggan B</footer>
+  </blockquote>
+
+  <blockquote tabindex="0" aria-label='Ulasan dari Pelanggan C'>
+    <p>"Desain modern dan bahan yang digunakan sangat berkualitas. Harga juga bersaing dengan toko furniture lainnya."</p>
+    <footer>- Pelanggan C</footer>
+  </blockquote>
+</section>
+
+<section id="faq" tabindex="0" aria-label="FAQ section">
+  <h2>FAQ</h2>
+  <div class="faq-item" aria-expanded="false" aria-controls="faq1" role="button" tabindex="0">
+    <h3 id="faq1-title">Apa saja metode pembayaran yang diterima?</h3>
+    <p id="faq1" hidden>Kami menerima transfer bank, kartu kredit, dan pembayaran digital seperti GoPay dan OVO.</p>
+  </div>
+  <div class="faq-item" aria-expanded="false" aria-controls="faq2" role="button" tabindex="0">
+    <h3 id="faq2-title">Apakah ada garansi untuk produk?</h3>
+    <p id="faq2" hidden>Ya, semua produk kami dilengkapi dengan garansi resmi selama 1 tahun untuk kerusakan pabrik.</p>
+  </div>
+  <div class="faq-item" aria-expanded="false" aria-controls="faq3" role="button" tabindex="0">
+    <h3 id="faq3-title">Berapa lama waktu pengiriman?</h3>
+    <p id="faq3" hidden>Estimasi pengiriman adalah 3-7 hari kerja setelah konfirmasi pembayaran, tergantung lokasi pengiriman.</p>
+  </div>
+</section>
+
+<section id="contact" tabindex="0" aria-label="Contact Us section">
+  <h2>Hubungi Kami</h2>
+  <form id="contact-form" aria-label="Formulir Kontak">
+    <label for="name">Nama:</label>
+    <input type="text" id="name" name="name" required aria-required="true" placeholder="Nama lengkap Anda" />
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required aria-required="true" placeholder="alamat email Anda" />
+    <label for="message">Pesan:</label>
+    <textarea id="message" name="message" rows="5" required aria-required="true" placeholder="Tulis pesan Anda disini..."></textarea>
+    <button type="submit">Kirim</button>
+  </form>
+</section>
+<footer>
+  <p>&copy; 2023 Marketplace Furniture. All rights reserved.</p>
+</footer>
+<!-- Main JS File -->
+<script src="assets/js/main.js"></script>
+</body>
+</html>

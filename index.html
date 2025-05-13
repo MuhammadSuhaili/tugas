@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marketplace Furniture</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#products">Our Products</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <h1>Selamat Datang di Marketplace Furniture</h1>
+    <p>Temukan furniture impian Anda di sini!</p>
+    <a href="#products" class="cta">Lihat Produk Kami</a>
+  </section>
+
+  <section id="about">
+    <h2>Tentang Kami</h2>
+    <p>Kami adalah perusahaan furniture yang menyediakan berbagai produk berkualitas tinggi untuk kebutuhan rumah Anda. Kami berkomitmen menghadirkan desain modern dengan kualitas terbaik.</p>
+  </section>
+
+  <section id="categories">
+    <h2>Kategori</h2>
+    <ul id="category-list">
+      <li class="active" onclick="filterProduk('semua')">Semua</li>
+      <li onclick="filterProduk('ruang-tamu')">Ruang Tamu</li>
+      <li onclick="filterProduk('kamar-tidur')">Kamar Tidur</li>
+      <li onclick="filterProduk('dapur')">Dapur</li>
+      <li onclick="filterProduk('kantor')">Kantor</li>
+      <li onclick="filterProduk('outdoor')">Outdoor</li>
+    </ul>
+  </section>
+
+  <section id="products">
+    <h2>Produk Kami</h2>
+    <div class="products-grid">
+      <div class="product-card" data-kategori="ruang-tamu">
+        <img src="images/sofa.avif" alt="Sofa Modern" />
+        <h3>Sofa Modern</h3>
+        <p>Sofa dengan desain minimalis dan kenyamanan maksimal untuk ruang tamu Anda.</p>
+      </div>
+
+      <div class="product-card" data-kategori="dapur">
+        <img src="images/table.jpg" alt="Meja Makan" />
+        <h3>Meja Makan</h3>
+        <p>Meja makan dari kayu solid dengan finishing natural elegan.</p>
+      </div>
+
+      <div class="product-card" data-kategori="kantor">
+        <img src="images/ergo.jpg" alt="Kursi Ergonomis" />
+        <h3>Kursi Ergonomis</h3>
+        <p>Kursi dengan desain ergonomis cocok untuk kerja atau ruang belajar.</p>
+      </div>
+
+      <div class="product-card" data-kategori="kamar-tidur">
+        <img src="images/lemari3.jpg" alt="Lemari Minimalis" />
+        <h3>Lemari Minimalis</h3>
+        <p>Lemari dengan desain simpel dan fungsional untuk ruang kamar Anda.</p>
+      </div>
+
+      <div class="product-card" data-kategori="kantor">
+        <img src="images/rak-buku.jpg" alt="Rak Buku" />
+        <h3>Rak Buku</h3>
+        <p>Rak buku dengan desain modular yang bisa disesuaikan dengan ruang Anda.</p>
+      </div>
+
+      <div class="product-card" data-kategori="outdoor">
+        <img src="images/kursi-kayu.jpg" alt="Bangku Kayu" />
+        <h3>Bangku Kayu</h3>
+        <p>Bangku kayu serbaguna dengan gaya rustic yang elegan.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <h2>Testimoni</h2>
+    <blockquote>
+      Produk sangat bagus dan pengirimannya cepat!
+      <footer>- Andi, Jakarta</footer>
+    </blockquote>
+    <blockquote>
+      Furniture-nya berkualitas tinggi dan tahan lama.
+      <footer>- Rina, Bandung</footer>
+    </blockquote>
+  </section>
+
+  <section id="faq">
+    <h2>Pertanyaan Umum</h2>
+    <div class="faq-item">
+      <h3>Bagaimana cara melakukan pemesanan?</h3>
+      <p>Anda bisa melakukan pemesanan melalui website kami atau menghubungi layanan pelanggan.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Apakah tersedia layanan pengiriman ke seluruh Indonesia?</h3>
+      <p>Ya, kami melayani pengiriman ke seluruh wilayah Indonesia.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Hubungi Kami</h2>
+    <form>
+      <label for="name">Nama:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="message">Pesan:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+
+      <button type="submit">Kirim</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 Marketplace Furniture. All rights reserved.
+  </footer>
+  <script src="script.js"></script>
+
+  <!-- Script filter kategori -->
+</body>
+</html>
